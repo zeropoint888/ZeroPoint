@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<title>更新サポート | ZeroPoint</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="images/zeropointlogo.png">
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+<img src="images/zeropointlogo.png" alt="ZeroPointロゴ">
+<span>ZeroPoint</span>
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html#service">サービス</a></li>
+<li><a href="index.html#works">制作事例</a></li>
+<li><a href="index.html#philosophy">強み</a></li>
+<li><a href="index.html#contact">お問い合わせ</a></li>
+</ul>
+
+</nav>
+
+</header>
+
+<section class="service-detail">
+
+<h1>更新サポート</h1>
+
+<p>
+ホームページ公開後の文章修正や画像追加など
+更新作業をサポートします。
+</p>
+
+<h2>更新サポート内容</h2>
+
+<ul>
+<li>文章の変更・追加</li>
+<li>画像の差し替え</li>
+<li>新しいページの追加</li>
+<li>軽微なデザイン調整</li>
+</ul>
+
+</section>
+
+<section class="service-cta">
+<h2 class="fade-text">更新サポート対応のご相談はこちら</h2>
+
+<a href="index.html#contact" class="btn">
+お問い合わせ
+</a>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+
+particlesJS("particles-js",{
+
+particles:{
+number:{value:140},
+
+color:{value:"#00bcd4"},
+
+shape:{type:"circle"},
+
+opacity:{value:0.6},
+
+size:{value:2},
+
+line_linked:{
+enable:true,
+distance:200,
+color:"#00bcd4",
+opacity:0.5,
+width:1
+},
+
+move:{
+enable:true,
+speed:0.7
+}
+
+},
+
+interactivity:{
+events:{
+onhover:{
+enable:true,
+mode:"repulse"
+},
+onclick:{
+enable:true,
+mode:"push"
+}
+},
+
+modes:{
+repulse:{
+distance:80,
+duration:0.3
+},
+push:{
+particles_nb:3
+}
+}
+
+},
+
+retina_detect:true
+
+});
+
+</script>
+
+<script>
+
+const fades = document.querySelectorAll(".fade-text");
+
+function reveal(){
+
+fades.forEach(el => {
+
+const position = el.getBoundingClientRect().top;
+const screen = window.innerHeight;
+
+if(position < screen - 100){
+el.classList.add("show");
+}
+
+});
+
+}
+
+window.addEventListener("scroll", reveal);
+
+reveal();  
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>更新サポート | ZeroPoint</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<nav class="navbar">
+<div class="logo">
+<img src="images/ZeroPointlogo.png">
+<span>ZeroPoint</span>
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html#service">サービス</a></li>
+<li><a href="index.html#works">制作事例</a></li>
+<li><a href="index.html#flow">制作の流れ</a></li>
+<li><a href="index.html#contact">お問い合わせ</a></li>
+</ul>
+</nav>
+
+<!-- ヒーロー -->
+<section class="service-hero">
+
+<h1 class="fade-text">
+ホームページ、放置していませんか？
+</h1>
+
+<p class="fade-text">
+更新されないサイトは信頼を失います。<br>
+継続的な運用をサポートします
+</p>
+
+<a href="#contact" class="btn fade-text">
+無料相談する
+</a>
+
+</section>
+
+<!-- 問題提起 -->
+<section class="problem">
+
+<h2 class="fade-text">こんな状態になっていませんか？</h2>
+
+<div class="problem-box">
+
+<p class="fade-text">更新のやり方がわからない</p>
+<p class="fade-text">忙しくて手が回らない</p>
+<p class="fade-text">情報が古いままになっている</p>
+<p class="fade-text">放置してしまっている</p>
+
+</div>
+
+</section>
+
+<!-- 解決 -->
+<section class="service-feature">
+
+<h2 class="fade-text">更新サポートで解決</h2>
+
+<div class="feature-box">
+
+<div class="feature-item">
+<h3 class="fade-text">定期更新</h3>
+<p class="fade-text">
+最新情報を維持し信頼性アップ
+</p>
+</div>
+
+<div class="feature-item">
+<h3 class="fade-text">修正対応</h3>
+<p class="fade-text">
+テキスト・画像の変更に柔軟対応
+</p>
+</div>
+
+<div class="feature-item">
+<h3 class="fade-text">運用サポート</h3>
+<p class="fade-text">
+集客につながる改善提案
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- 内容 -->
+<section class="service-content">
+
+<h2 class="fade-text">対応内容</h2>
+
+<ul>
+<li class="fade-text">テキスト修正・追加</li>
+<li class="fade-text">画像差し替え</li>
+<li class="fade-text">ページ更新</li>
+<li class="fade-text">軽微なデザイン調整</li>
+</ul>
+
+</section>
+
+<!-- 料金 -->
+<section class="service-price">
+
+<h2 class="fade-text">料金</h2>
+
+<p class="fade-text">
+月額サポート：¥11,000〜
+</p>
+
+</section>
+
+<!-- CTA -->
+<section class="service-cta">
+
+<h2 class="fade-text">
+まずはお気軽にご相談ください
+</h2>
+
+<p class="fade-text">
+現状に合わせた最適なプランをご提案します
+</p>
+
+</section>
+
+<!-- 問い合わせ -->
+<section id="contact" class="contact">
+
+<h2 class="fade-text">お問い合わせ</h2>
+
+<form 
+  action="https://formspree.io/f/xxxxx" 
+  method="POST" 
+  class="contact-form fade-text"
+>
+
+<input type="text" name="name" placeholder="お名前" required>
+<input type="email" name="email" placeholder="メールアドレス" required>
+
+<select name="type">
+<option>更新サポート</option>
+<option>ホームページ制作</option>
+<option>スマホ最適化</option>
+<option>SEO対策</option>
+</select>
+
+<textarea name="message" placeholder="ご相談内容" required></textarea>
+
+<input type="hidden" name="_gotcha" style="display:none">
+<input type="hidden" name="_next" value="thanks.html">
+
+<button type="submit" class="btn">送信する</button>
+
+</form>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+window.onload = function() {
+particlesJS("particles-js", {
+particles:{
+number:{value:140},
+color:{value:"#00bcd4"},
+shape:{type:"circle"},
+opacity:{value:0.6},
+size:{value:2},
+line_linked:{
+enable:true,
+distance:200,
+color:"#00bcd4",
+opacity:0.5,
+width:1
+},
+move:{enable:true,speed:0.5}
+},
+interactivity:{
+events:{
+onhover:{enable:true,mode:"repulse"},
+onclick:{enable:true,mode:"push"}
+},
+modes:{
+repulse:{distance:80,duration:0.3},
+push:{particles_nb:3}
+}
+},
+retina_detect:true
+});
+}
+</script>
+
+<script>
+const fades = document.querySelectorAll(".fade-text");
+
+function reveal(){
+fades.forEach(el => {
+const position = el.getBoundingClientRect().top;
+const screen = window.innerHeight;
+
+if(position < screen - 100){
+el.classList.add("show");
+}
+});
+}
+
+window.addEventListener("scroll", reveal);
+reveal();
+</script>
+
+</body>
+</html>

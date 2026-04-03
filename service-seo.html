@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO対策・集客戦略 | ZeroPoint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00bcd4;
+            --secondary: #008ba3;
+            --dark: #000000;
+            --dark-accent: #0a0a0a;
+            --light: #ffffff;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.8;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.25rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 0.05em;
+            color: #fff;
+        }
+
+        .logo img {
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .service-hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.25rem, 6vw, 4rem);
+            line-height: 1.15;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            color: #ffffff;
+        }
+
+        .hero-desc {
+            font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        /* Common Section Style */
+        section {
+            padding: 120px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        h2 span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Feature Grid */
+        .feature-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-item {
+            background: var(--dark-accent);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+
+        .feature-item h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-item h3::before {
+            content: '';
+            width: 8px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: var(--dark-accent);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 4rem;
+        }
+
+        .content-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list li {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: 0.3s;
+        }
+
+        .content-list li:hover {
+            border-color: var(--primary);
+        }
+
+        .content-list li svg {
+            color: var(--primary);
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Price Card */
+        .price-card {
+            background: var(--dark-accent);
+            color: #fff;
+            padding: 5rem 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .price-amount {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 0.5rem 0;
+            letter-spacing: -0.05em;
+        }
+
+        .price-amount span {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Flow steps */
+        .flow-step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            background: var(--dark-accent);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .flow-step:hover {
+            border-color: var(--primary);
+        }
+
+        .step-num {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark);
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 3rem;
+            background: var(--primary);
+            color: #000;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Form */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--dark-accent);
+            padding: 4rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--dark);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 1rem 5%; }
+            .nav-links { display: none; }
+            section { padding: 80px 5%; }
+            .hero-title { margin-bottom: 1.5rem; }
+            .content-card { padding: 2.5rem 1.5rem; }
+            .flow-step { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+            .price-amount { font-size: 3rem; }
+            .contact-form { padding: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="images/ZeroPointlogo.png">
+        <span>ZeroPoint</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#service">SEO戦略</a></li>
+        <li><a href="#flow">対策の流れ</a></li>
+        <li><a href="#contact">ご相談</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="service-hero">
+    <h1 class="hero-title fade-in">
+        検索順位を上げ、<br>持続的な資産を築く
+    </h1>
+    <p class="hero-desc fade-in">
+        小手先のテクニックではなく、本質的なSEO対策と<br>データドリブンな改善で、ビジネスを加速させる集客基盤を構築します。
+    </p>
+</section>
+
+<!-- Features -->
+<section id="service">
+    <h2 class="fade-in"><span>Philosophy</span>SEO対策における強み</h2>
+    <div class="feature-box">
+        <div class="feature-item fade-in">
+            <h3>堅牢なテクニカルSEO</h3>
+            <p>Googleのクローラーが正しく情報を読み取れるよう、サイトの表示速度改善や内部リンク構造の最適化を徹底的に行います。</p>
+        </div>
+        <div class="feature-item fade-in">
+            <h3>ユーザー心理を満たすコンテンツ</h3>
+            <p>検索意図（インテント）を深く分析。ユーザーが真に求めている情報を提供し、離脱率を下げて上位表示を狙います。</p>
+        </div>
+        <div class="feature-item fade-in">
+            <h3>データに基づく継続的改善</h3>
+            <p>GA4やSearch Consoleを活用し、アクセス状況を可視化。勘に頼らない、数値に基づいたPDCAサイクルを回します。</p>
+        </div>
+    </div>
+</section>
+
+<!-- Content Details -->
+<section>
+    <div class="content-card fade-in">
+        <h2 style="text-align: left; margin-bottom: 3rem;"><span>Package Contents</span>提供サービス詳細</h2>
+        <ul class="content-list">
+            <li>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                内部構造最適化（テクニカル）
+            </li>
+            <li>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                キーワード選定・競合調査
+            </li>
+            <li>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                コンテンツ制作・リライト支援
+            </li>
+            <li>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                UI/UX改善（離脱率低下施策）
+            </li>
+            <li>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                アクセス解析ツール設定（GA4等）
+            </li>
+            <li>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                月次レポート・改善ミーティング
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Price Section -->
+<section>
+    <div class="price-card fade-in">
+        <h2 style="color: #fff; margin-bottom: 2rem;"><span>Investment</span>コンサルティングプラン</h2>
+        <p class="text-slate-500 font-medium">Monthly SEO Consulting</p>
+        <div class="price-amount">¥55,000<span>〜 / 月（税込）</span></div>
+        <p class="mt-4 text-slate-400 max-w-md mx-auto">
+            現状分析から戦略立案、毎月の改善施策まで。貴社のWeb担当者として中長期的な集客をサポートします。（最低契約期間：6ヶ月〜）
+        </p>
+    </div>
+</section>
+
+<!-- Flow Section -->
+<section id="flow">
+    <h2 class="fade-in"><span>Our Process</span>対策の流れ</h2>
+    <div class="max-w-4xl mx-auto">
+        <div class="flow-step fade-in">
+            <div class="step-num">01</div>
+            <div>
+                <h4 class="text-xl font-bold mb-2">現状分析・サイト診断</h4>
+                <p class="text-slate-400">現在のサイトの順位、アクセス状況、内部構造の課題を専用ツールを用いて洗い出します。</p>
+            </div>
+        </div>
+        <div class="flow-step fade-in">
+            <div class="step-num">02</div>
+            <div>
+                <h4 class="text-xl font-bold mb-2">戦略策定・キーワード選定</h4>
+                <p class="text-slate-400">ビジネスの目標に合わせ、コンバージョンに繋がりやすい「勝てるキーワード」を選定します。</p>
+            </div>
+        </div>
+        <div class="flow-step fade-in">
+            <div class="step-num">03</div>
+            <div>
+                <h4 class="text-xl font-bold mb-2">内部施策・コンテンツ実装</h4>
+                <p class="text-slate-400">サイト構造の修正（テクニカルSEO）を実施し、検索意図を満たす良質なコンテンツを投入します。</p>
+            </div>
+        </div>
+        <div class="flow-step fade-in">
+            <div class="step-num">04</div>
+            <div>
+                <h4 class="text-xl font-bold mb-2">効果測定・継続改善</h4>
+                <p class="text-slate-400">毎月の順位変動や流入数を確認。データを元にリライトや新規施策のPDCAを回し続けます。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section id="contact">
+    <h2 class="fade-in"><span>Contact</span>無料サイト診断・ご相談</h2>
+    <div class="contact-form fade-in">
+        <form onsubmit="event.preventDefault(); location.href='thanks.html';">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" placeholder="氏名" required>
+                <input type="email" placeholder="メールアドレス" required>
+            </div>
+            <input type="text" placeholder="診断希望のサイトURL（任意）">
+            <textarea rows="6" placeholder="現在の集客に関するお悩み（アクセスが伸びない、問い合わせが来ない等）をお聞かせください" required></textarea>
+            <button type="submit" class="btn w-full">現状の課題を相談する（無料）</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-16 text-center text-slate-500 bg-black border-t border-gray-800">
+    <div class="flex gap-6 justify-center mb-8">
+        <a href="service-hp.html" class="text-sm hover:underline text-primary">コーポレートサイト制作</a>
+        <a href="service-lp.html" class="text-sm hover:underline text-primary">LP（ランディングページ）制作</a>
+    </div>
+    <p class="text-xs tracking-widest">&copy; 2024 ZEROPOINT DIGITAL ARCHITECTS.</p>
+</footer>
+
+<!-- particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+    window.onload = function() {
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 120, density: { enable: true, value_area: 800 } },
+                color: { value: "#00bcd4" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 2, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00bcd4",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    out_mode: "out"
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                },
+                modes: {
+                    grab: { distance: 160, line_linked: { opacity: 0.8 } }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+</script>
+
+</body>
+</html>

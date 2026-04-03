@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRAI AUTO SERVICE | 安心・迅速な自動車整備・車検</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cta-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold text-blue-700">MIRAI <span class="text-gray-600">AUTO</span></span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 font-bold">
+                <a href="#services" class="hover:text-blue-600">サービス</a>
+                <a href="#about" class="hover:text-blue-600">選ばれる理由</a>
+                <a href="#flow" class="hover:text-blue-600">ご利用の流れ</a>
+                <a href="#faq" class="hover:text-blue-600">Q&A</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="tel:000-0000-0000" class="hidden lg:flex items-center text-blue-700 font-bold">
+                    <i class="fas fa-phone-alt mr-2"></i> 0120-000-000
+                </a>
+                <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-bold transition duration-300 shadow-lg">
+                    無料見積もり
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient h-[600px] flex items-center text-white">
+        <div class="container mx-auto px-4 text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                あなたの愛車に、<br>最高級の安心と技術を。
+            </h1>
+            <p class="text-xl mb-8 text-gray-200">
+                国家資格整備士による確かな点検・修理。最短当日仕上げも可能です。
+            </p>
+            <div class="flex flex-col md:flex-row gap-4">
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-md text-lg font-bold text-center">
+                    今すぐネットでお問い合わせ
+                </a>
+                <a href="#services" class="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-10 py-4 rounded-md text-lg font-bold text-center border border-white/50">
+                    サービス一覧を見る
+                </a>
+            </div>
+            <div class="mt-8 flex items-center justify-center md:justify-start space-x-6 text-sm">
+                <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i>地域最安値に挑戦</span>
+                <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i>代車無料貸出</span>
+                <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i>土日祝も営業</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Contact Strip -->
+    <div class="bg-blue-900 text-white py-4">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-12">
+            <p class="font-bold">お急ぎの方はお電話で！</p>
+            <a href="tel:0120000000" class="text-2xl font-bold hover:text-orange-400">
+                <i class="fas fa-phone-alt"></i> 0120-000-000
+            </a>
+            <p class="text-sm">受付時間 9:00〜19:00 (年中無休)</p>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">幅広いメンテナンスに対応</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600 card-hover">
+                    <div class="text-blue-600 text-4xl mb-4 text-center">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">車検・定期点検</h3>
+                    <p class="text-gray-600 mb-6">ディーラー品質をリーズナブルに。不必要な部品交換は一切行わず、事前にお見積もりを提示します。</p>
+                    <ul class="text-sm space-y-2 mb-6">
+                        <li><i class="fas fa-caret-right text-blue-600 mr-2"></i>即日車検対応</li>
+                        <li><i class="fas fa-caret-right text-blue-600 mr-2"></i>引き取り納車OK</li>
+                    </ul>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600 card-hover">
+                    <div class="text-blue-600 text-4xl mb-4 text-center">
+                        <i class="fas fa-car-crash"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">板金・塗装</h3>
+                    <p class="text-gray-600 mb-6">気になるキズやヘコミを元通りに。最新の調色システムと熟練の職人技で、新車同様の輝きを取り戻します。</p>
+                    <ul class="text-sm space-y-2 mb-6">
+                        <li><i class="fas fa-caret-right text-blue-600 mr-2"></i>保険修理対応</li>
+                        <li><i class="fas fa-caret-right text-blue-600 mr-2"></i>見積もり無料</li>
+                    </ul>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600 card-hover">
+                    <div class="text-blue-600 text-4xl mb-4 text-center">
+                        <i class="fas fa-oil-can"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">一般整備・オイル交換</h3>
+                    <p class="text-gray-600 mb-6">エンジンオイル、タイヤ交換、エアコン修理など。小さな異音や違和感もお気軽にご相談ください。</p>
+                    <ul class="text-sm space-y-2 mb-6">
+                        <li><i class="fas fa-caret-right text-blue-600 mr-2"></i>最短15分で完了</li>
+                        <li><i class="fas fa-caret-right text-blue-600 mr-2"></i>高品質オイル使用</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="about" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1530046339160-ce3e5b0c7a2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="整備の様子" class="rounded-lg shadow-2xl">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl font-bold mb-6">MIRAI AUTOが選ばれる3つの理由</h2>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-start mb-4">
+                            <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 shrink-0">1</span>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">明朗会計！事前見積もり徹底</h4>
+                                <p class="text-gray-600">作業前に必ず料金を提示。お客様の承諾なしに追加作業を行うことはありません。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-4">
+                            <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 shrink-0">2</span>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">国家資格を保有する精鋭整備士</h4>
+                                <p class="text-gray-600">全スタッフが国家資格保持者。ハイブリッド車や最新の輸入車まで幅広く対応可能です。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 shrink-0">3</span>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">アフターフォローの充実</h4>
+                                <p class="text-gray-600">整備箇所には6ヶ月または1万kmの保証付き。次回の点検時期も適切にご案内します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+                <div class="bg-blue-700 text-white p-8 text-center">
+                    <h2 class="text-3xl font-bold mb-2">無料お見積もり・ご相談</h2>
+                    <p>お車の悩み、何でもお気軽にお問い合わせください。</p>
+                </div>
+                <div class="p-8 md:p-12">
+                    <form id="inquiryForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold mb-2">お名前 <span class="text-red-500">*</span></label>
+                                <input type="text" placeholder="例：山田 太郎" class="w-full border-gray-300 border p-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2">電話番号 <span class="text-red-500">*</span></label>
+                                <input type="tel" placeholder="例：090-0000-0000" class="w-full border-gray-300 border p-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">メールアドレス <span class="text-red-500">*</span></label>
+                            <input type="email" placeholder="example@mail.com" class="w-full border-gray-300 border p-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">お問い合わせ項目 <span class="text-red-500">*</span></label>
+                            <select class="w-full border-gray-300 border p-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none" required>
+                                <option value="">選択してください</option>
+                                <option value="車検">車検のお見積もり</option>
+                                <option value="修理">板金・塗装・修理</option>
+                                <option value="メンテナンス">点検・オイル交換</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">お車の車種・年式</label>
+                            <input type="text" placeholder="例：トヨタ プリウス 2020年式" class="w-full border-gray-300 border p-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">ご相談内容</label>
+                            <textarea rows="4" placeholder="気になる症状やご希望の作業内容をご記入ください" class="w-full border-gray-300 border p-3 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xl font-bold px-12 py-4 rounded-full shadow-xl transform transition hover:scale-105">
+                                内容を確認して送信する
+                            </button>
+                            <p class="text-xs text-gray-500 mt-4">
+                                ※送信後、通常24時間以内に担当者よりご連絡いたします。
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-8">
+                <span class="text-2xl font-bold text-white">MIRAI AUTO SERVICE</span>
+                <p class="mt-2 text-sm">〒000-0000 ○○県○○市1-2-3</p>
+                <p class="text-sm">営業時間: 9:00 - 19:00 | 定休日: 年中無休</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-8 text-xl">
+                <a href="#" class="hover:text-white"><i class="fab fa-line"></i></a>
+                <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p class="text-xs">&copy; 2024 MIRAI AUTO SERVICE All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating CTA for Mobile -->
+    <div class="cta-float md:hidden">
+        <a href="tel:0120000000" class="bg-green-500 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl border-4 border-white animate-bounce">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+    </div>
+
+    <!-- Simple Form Success Message Handler -->
+    <script>
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const container = this.parentElement;
+            container.innerHTML = `
+                <div class="text-center py-20">
+                    <div class="text-6xl text-green-500 mb-6"><i class="fas fa-check-circle"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">お問い合わせありがとうございます！</h3>
+                    <p class="text-gray-600">内容を確認し、担当者より折り返しご連絡させていただきます。</p>
+                    <button onclick="location.reload()" class="mt-8 text-blue-600 font-bold hover:underline">フォームに戻る</button>
+                </div>
+            `;
+            window.scrollTo({ top: document.getElementById('contact').offsetTop, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

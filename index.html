@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroPoint - 中小企業向け売れるLP制作</title>
+    <meta name="description" content="中小企業特化型の戦略的LP制作サービス。デザインだけでなく成約率にこだわったLPを提供します。">
+    <meta name="google-site-verification" content="UTGAhzOpv-HQ4gmh7eXVqv9-8kCPaW9l9PdDRowMNCI" />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            900: '#164e63',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 粒子キャンバスのスタイル */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* アニメーション用のクラス */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="bg-black text-white selection:bg-cyan-500/30 selection:text-cyan-400">
+    <!-- Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <div class="text-2xl font-bold tracking-tighter text-cyan-400">ZeroPoint</div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
+                <a href="#problem" class="hover:text-cyan-400 transition-colors">悩み</a>
+                <a href="#solution" class="hover:text-cyan-400 transition-colors">解決策</a>
+                <a href="#works" class="hover:text-cyan-400 transition-colors">制作事例</a>
+                <a href="#about" class="hover:text-cyan-400 transition-colors">運営者</a>
+                <button class="bg-cyan-600 hover:bg-cyan-500 text-white px-5 py-2 rounded-full transition-all">お問い合わせ</button>
+            </nav>
+            <button id="menu-toggle" class="md:hidden text-white p-2">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-white/10 md:hidden overflow-hidden">
+            <div class="flex flex-col p-6 gap-4">
+                <a href="#problem" class="mobile-link text-lg font-medium text-white/70 py-2">悩み</a>
+                <a href="#solution" class="mobile-link text-lg font-medium text-white/70 py-2">解決策</a>
+                <a href="#works" class="mobile-link text-lg font-medium text-white/70 py-2">制作事例</a>
+                <a href="#about" class="mobile-link text-lg font-medium text-white/70 py-2">運営者</a>
+                <button class="bg-cyan-600 text-white px-5 py-3 rounded-xl font-bold mt-2">お問い合わせ</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- 1. Hero Section -->
+        <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="max-w-3xl fade-in">
+                    <span class="inline-block px-4 py-1 rounded-full bg-cyan-900/30 text-cyan-400 text-sm font-semibold mb-6 border border-cyan-500/30">
+                        LP制作｜中小企業向け
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-8 tracking-tight">
+                        売れるLP制作なら<br />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                            ZeroPointへ
+                        </span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/60 mb-10 leading-relaxed max-w-xl">
+                        デザインだけでは終わらせない。ターゲットを射抜き、コンバージョンを最大化させる「戦略的LP」で、あなたのビジネスを次のステージへ。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact"
+                           class="bg-white text-black px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-cyan-400 transition-all">
+                           無料で相談する
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#works"
+                           class="px-8 py-4 rounded-full font-bold text-lg border border-white/20 hover:bg-white/5 transition-all inline-block text-center">
+                           制作事例を見る
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+        </section>
+
+        <!-- 2. Problem Section -->
+        <section id="problem" class="py-32 bg-zinc-950/50 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6">こんなお悩みありませんか？</h2>
+                    <p class="text-white/50 text-lg">多くの企業が陥る、LP制作の「罠」</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-all group fade-in">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-900/30 flex items-center justify-center mb-6 text-cyan-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="bar-chart-3"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">アクセスはあるが売れない</h3>
+                        <p class="text-white/60 leading-relaxed">広告費をかけて集客しても、肝心の成約に繋がっていない。</p>
+                    </div>
+                    <div class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-all group fade-in">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-900/30 flex items-center justify-center mb-6 text-cyan-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="target"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">自社の強みが伝わらない</h3>
+                        <p class="text-white/60 leading-relaxed">競合他社との違いが不明確で、価格競争に巻き込まれている。</p>
+                    </div>
+                    <div class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-all group fade-in">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-900/30 flex items-center justify-center mb-6 text-cyan-400 group-hover:scale-110 transition-transform">
+                            <i data-lucide="layout"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">デザインが古臭い</h3>
+                        <p class="text-white/60 leading-relaxed">信頼感に欠けるデザインで、ユーザーがすぐに離脱してしまう。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Solution Section -->
+        <section id="solution" class="py-32 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="fade-in">
+                        <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight">
+                            ZeroPointが提供する<br />
+                            <span class="text-cyan-400">「勝てる」</span>LP戦略
+                        </h2>
+                        <div class="space-y-8">
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-black">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">徹底した市場・競合調査</h4>
+                                    <p class="text-white/60">ただ作るのではなく、勝てる場所を見つけることから始めます。</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-black">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">心理学に基づいた構成</h4>
+                                    <p class="text-white/60">ユーザーの行動心理を逆算し、自然と「欲しい」と思わせる導線設計。</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-black">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">高速PDCAを可能にする設計</h4>
+                                    <p class="text-white/60">リリース後の改善を見据えた、拡張性の高いコーディング。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative fade-in">
+                        <div class="aspect-square rounded-3xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-white/10 p-8 flex items-center justify-center">
+                            <div class="text-center">
+                                <i data-lucide="trending-up" class="w-32 h-32 text-cyan-400 mx-auto mb-8"></i>
+                                <div class="text-4xl font-black text-white uppercase tracking-tighter">Conversion Up</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Results Section -->
+        <section class="py-32 bg-zinc-950/80">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6">デモ制作・改善シミュレーション</h2>
+                    <p class="text-white/50 text-lg">架空商材を用いた、成果へのこだわりの可視化</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-4">
+                    <div class="text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-sm text-white/50 mb-2">平均CVR改善率</div>
+                        <div class="text-4xl md:text-5xl font-black text-cyan-400">180%<span class="text-xl ml-1">UP</span></div>
+                    </div>
+                    <div class="text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-sm text-white/50 mb-2">平均離脱率低減</div>
+                        <div class="text-4xl md:text-5xl font-black text-cyan-400">45%<span class="text-xl ml-1">DOWN</span></div>
+                    </div>
+                    <div class="text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-sm text-white/50 mb-2">構成案満足度</div>
+                        <div class="text-4xl md:text-5xl font-black text-cyan-400">98%</div>
+                    </div>
+                    <div class="text-center p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-sm text-white/50 mb-2">リピート率</div>
+                        <div class="text-4xl md:text-5xl font-black text-cyan-400">85%</div>
+                    </div>
+                </div>
+                <p class="text-center text-white/30 text-xs mb-20">※上記数値はデモ制作および架空商材での改善シミュレーションに基づく架空実績です。</p>
+            </div>
+        </section>
+
+        <!-- 5. Case Studies Section -->
+        <section class="py-32 bg-zinc-950/50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter">Case Studies</h2>
+                </div>
+                <div class="space-y-24">
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="h-px flex-grow bg-white/10"></div>
+                            <div class="text-white/60 font-bold uppercase tracking-widest text-sm">不動産仲介業 A社様</div>
+                            <div class="h-px flex-grow bg-white/10"></div>
+                        </div>
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <div class="p-8 md:p-12 rounded-[40px] bg-red-500/5 border border-red-500/20 h-full flex flex-col fade-in">
+                                <div class="px-4 py-1 rounded-full bg-red-500/20 text-red-400 text-sm font-bold uppercase tracking-wider w-fit mb-8">Before</div>
+                                <p class="text-xl md:text-2xl text-white/70 italic leading-relaxed mb-8">
+                                    「デザインは綺麗だが、どこをクリックすればいいか分からず、問い合わせが月に1〜2件しかなかった...」
+                                </p>
+                                <a href="before.html" target="_blank"
+                                   class="inline-flex items-center gap-2 text-red-400/60 font-bold hover:text-red-400 transition-colors mb-10 group">
+                                   以前のサイトを見る
+                                   <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                                   </a>
+                                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 text-center mt-auto">
+                                    <div class="text-sm text-white/40 mb-1">成約率</div>
+                                    <div class="text-4xl font-black text-red-400">3.2%</div>
+                                </div>
+                            </div>
+                            <div class="p-8 md:p-12 rounded-[40px] bg-cyan-500/5 border border-cyan-500/20 h-full flex flex-col relative overflow-hidden fade-in">
+                                <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full -mr-32 -mt-32"></div>
+                                <div class="px-4 py-1 rounded-full bg-cyan-500 text-black text-sm font-bold uppercase tracking-wider w-fit mb-8 relative z-10 shadow-[0_0_20px_rgba(6,182,212,0.5)]">After</div>
+                                <p class="text-xl md:text-2xl text-white font-bold leading-relaxed mb-8 relative z-10">
+                                    「ユーザーの悩みに寄り添う構成に変更。初月から問い合わせが15件に急増し、売上が大幅に改善しました！」
+                                </p>
+                                <a href="after.html" target="_blank"
+                                   class="inline-flex items-center gap-2 text-red-400/60 font-bold hover:text-red-400 transition-colors mb-10 group">
+                                   実際のサイトを見る
+                                <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                                </a>
+                                <div class="p-8 rounded-3xl bg-cyan-500/10 border border-cyan-500/30 text-center relative z-10 shadow-[0_0_30px_rgba(6,182,212,0.1)] mt-auto">
+                                    <div class="text-sm text-cyan-400/60 mb-1">成約率</div>
+                                    <div class="text-6xl font-black text-cyan-400">8.5%</div>
+                                    <div class="text-sm text-cyan-400 mt-2 font-bold">約2.6倍の改善</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Target Section -->
+        <section class="py-32">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="p-12 md:p-20 rounded-[50px] bg-cyan-600 text-white relative overflow-hidden fade-in">
+                    <div class="relative z-10">
+                        <h2 class="text-3xl md:text-5xl font-black mb-10">ZeroPointは、<br />こんな方のためのサービスです。</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                                <span class="font-bold">自社サービスの強みを言語化できていない方</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                                <span class="font-bold">広告を出しているが、CPAが高騰して困っている方</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                                <span class="font-bold">デザインだけでなく「売上」に責任を持ちたい方</span>
+                            </div>
+                        </div>
+                    </div>
+                    <i data-lucide="users" class="absolute -bottom-20 -right-20 w-96 h-96 text-white/5"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Works Section -->
+<section id="works" class="py-32 bg-zinc-950/50">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- タイトル -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6 fade-in">
+            <div>
+                <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Works</h2>
+                <p class="text-white/50 text-lg">業界別のサイト事例</p>
+            </div>
+            <button class="text-cyan-400 font-bold flex items-center gap-2 hover:gap-4 transition-all">
+                すべての事例を見る <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+            <!-- 東京グルメLP -->
+<div class="group rounded-3xl overflow-hidden bg-white/5 border border-white/10 fade-in">
+
+    <div class="aspect-[4/3] relative overflow-hidden">
+        <img src="images/tokyo-gourmet.png" class="w-full h-full object-cover" alt="東京グルメLP">
+
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <a href="https://zeropoint888.github.io/tokyo-gourmet-Public/" target="_blank" class="bg-white text-black px-6 py-2 rounded-full font-bold">
+                サイトを見る
+            </a>
+        </div>
+    </div>
+
+    <div class="p-8">
+        <div class="text-cyan-400 text-xs font-bold mb-2 tracking-widest uppercase">
+            LP / MEDIA
+        </div>
+
+        <h3 class="text-2xl font-bold mb-4">
+            【東京グルメ】トレンドちゃん 様
+        </h3>
+
+        <p class="text-white/60 text-sm leading-relaxed">
+            女子会でお店選びに迷う人向けに設計した保存型LP。
+            導線設計とUIにこだわり、繰り返し使われる構造にしています。
+        </p>
+    </div>
+
+</div>
+
+            <!-- ②カード -->
+            <div class="group rounded-3xl overflow-hidden bg-white/5 border border-white/10 fade-in">
+                <div class="aspect-[4/3] bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center relative">
+                    <i data-lucide="car" class="w-12 h-12 text-white/10 group-hover:text-cyan-400/20 transition-colors"></i>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-black px-6 py-2 rounded-full font-bold">サイトを見る</button>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="text-cyan-400 text-xs font-bold mb-2 tracking-widest uppercase">Under construction</div>
+                    <h3 class="text-2xl font-bold mb-4">※制作中</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">　　</p>
+                </div>
+            </div>
+
+            <!-- ③カード -->
+            <div class="group rounded-3xl overflow-hidden bg-white/5 border border-white/10 fade-in">
+                <div class="aspect-[4/3] bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center relative">
+                    <i data-lucide="car" class="w-12 h-12 text-white/10 group-hover:text-cyan-400/20 transition-colors"></i>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-black px-6 py-2 rounded-full font-bold">サイトを見る</button>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="text-cyan-400 text-xs font-bold mb-2 tracking-widest uppercase">Under construction</div>
+                    <h3 class="text-2xl font-bold mb-4">※制作中</h3>
+                    <p class="text-white/60 text-sm leading-relaxed">　　</p>
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="py-32 bg-zinc-950/80">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-3xl md:text-5xl font-black mb-6">
+        初期費用を抑え、成果で回収するモデル
+      </h2>
+      <p class="text-white/50 text-lg">
+        制作費を低くする代わりに、運用・改善で成果を最大化します
+      </p>
+    </div>
+
+    <!-- モデル説明 -->
+    <div class="text-center mb-20 fade-in">
+      <div class="inline-block px-6 py-3 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-bold">
+        制作（低価格） → 運用（継続改善） → 成果最大化
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- LP -->
+      <div class="p-10 rounded-3xl bg-white/5 border border-white/10 fade-in">
+        <h3 class="text-2xl font-bold mb-4">LP制作</h3>
+        <p class="text-white/60 mb-4">導入しやすい価格</p>
+
+        <div class="text-4xl font-black text-cyan-400 mb-4">
+          30,000円
+        </div>
+
+        <p class="text-xs text-white/40 mb-6">
+          ※月額サポート契約前提
+        </p>
+
+        <ul class="text-white/60 space-y-2 text-sm">
+          <li>・スマホ対応</li>
+          <li>・基本導線設計</li>
+        </ul>
+      </div>
+
+      <!-- HP -->
+      <div class="p-10 rounded-3xl bg-white/5 border border-white/10 fade-in">
+        <h3 class="text-2xl font-bold mb-4">ホームページ制作</h3>
+        <p class="text-white/60 mb-4">しっかり作りたい方</p>
+
+        <div class="text-4xl font-black text-cyan-400 mb-4">
+          50,000円〜
+        </div>
+
+        <p class="text-xs text-white/40 mb-6">
+          ※月額サポート契約前提
+        </p>
+
+        <ul class="text-white/60 space-y-2 text-sm">
+          <li>・複数ページ対応</li>
+          <li>・SEO基本対応</li>
+        </ul>
+      </div>
+
+      <!-- Monthly（主役にする） -->
+      <div class="p-10 rounded-3xl bg-cyan-500/10 border border-cyan-500/30 fade-in relative scale-105">
+
+        <div class="absolute top-4 right-4 text-xs bg-cyan-500 text-black px-3 py-1 rounded-full font-bold">
+          メイン
+        </div>
+
+        <h3 class="text-2xl font-bold mb-4">月額サポート</h3>
+        <p class="text-white/60 mb-4">成果を出すための運用</p>
+
+        <div class="text-4xl font-black text-cyan-400 mb-4">
+          15,000円〜30,000円 / 月
+        </div>
+
+        <ul class="text-white/60 space-y-2 text-sm">
+          <li>・サイト更新 / 修正</li>
+          <li>・改善提案（CV導線）</li>
+          <li>・分析・運用サポート</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <a href="#contact"
+        class="bg-cyan-500 text-black px-8 py-4 rounded-full font-bold hover:bg-cyan-400 transition-all">
+        無料で相談する
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</section>
+
+        <!-- 8. Process Section -->
+        <section class="py-32">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6">制作の流れ</h2>
+                    <p class="text-white/50 text-lg">最短2週間で、あなたのビジネスを変えるLPを。</p>
+                </div>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="relative p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-5xl font-black text-white/5 absolute top-4 right-4 leading-none">01</div>
+                        <h4 class="text-xl font-bold mb-4 relative z-10">ヒアリング</h4>
+                        <p class="text-white/60 text-sm relative z-10">現状の課題と目標を徹底的に伺います。</p>
+                    </div>
+                    <div class="relative p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-5xl font-black text-white/5 absolute top-4 right-4 leading-none">02</div>
+                        <h4 class="text-xl font-bold mb-4 relative z-10">構成・ライティング</h4>
+                        <p class="text-white/60 text-sm relative z-10">売れるための「骨組み」と「言葉」を設計。</p>
+                    </div>
+                    <div class="relative p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-5xl font-black text-white/5 absolute top-4 right-4 leading-none">03</div>
+                        <h4 class="text-xl font-bold mb-4 relative z-10">デザイン・実装</h4>
+                        <p class="text-white/60 text-sm relative z-10">ブランド価値を高めるビジュアルを構築。</p>
+                    </div>
+                    <div class="relative p-8 rounded-3xl bg-white/5 border border-white/10 fade-in">
+                        <div class="text-5xl font-black text-white/5 absolute top-4 right-4 leading-none">04</div>
+                        <h4 class="text-xl font-bold mb-4 relative z-10">納品・運用支援</h4>
+                        <p class="text-white/60 text-sm relative z-10">公開後の改善アドバイスも行います。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Team Section -->
+        <section id="about" class="py-32 bg-zinc-950/50">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter">Team</h2>
+                    <p class="text-white/50 text-lg">プロフェッショナルが、あなたのパートナーに。</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                    <div class="p-10 rounded-[40px] bg-white/5 border border-white/10 text-center group hover:border-cyan-500/50 transition-all fade-in">
+                        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full mx-auto mb-10 border-8 border-cyan-500/10 overflow-hidden shadow-[0_0_50px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_70px_rgba(6,182,212,0.2)] transition-all">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="船場 拓海" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent opacity-60"></div>
+                        </div>
+                        <div class="text-cyan-400 text-sm font-bold mb-2 tracking-widest uppercase">Representative / Strategic Planner</div>
+                        <h3 class="text-3xl font-black mb-4">船場 拓海</h3>
+                        <p class="text-white/60 text-lg leading-relaxed max-w-md mx-auto">ターゲット設計・構成設計を担当。中小企業の集客導線を意識した LP 設計を得意とする。</p>
+                    </div>
+                    <div class="p-10 rounded-[40px] bg-white/5 border border-white/10 text-center group hover:border-cyan-500/50 transition-all fade-in">
+                        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full mx-auto mb-10 border-8 border-cyan-500/10 overflow-hidden shadow-[0_0_50px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_70px_rgba(6,182,212,0.2)] transition-all">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop" alt="猪狩 健太" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent opacity-60"></div>
+                        </div>
+                        <div class="text-cyan-400 text-sm font-bold mb-2 tracking-widest uppercase">UI/UX Designer / LP Creator</div>
+                        <h3 class="text-3xl font-black mb-4">猪狩 健太</h3>
+                        <p class="text-white/60 text-lg leading-relaxed max-w-md mx-auto">UI/UX を意識したデザイン設計を担当。ユーザーが迷わず行動できる導線設計を強みとする。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Greeting Section -->
+        <section class="py-32 relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="p-10 md:p-16 rounded-[40px] bg-gradient-to-br from-zinc-900 to-black border border-white/10 relative fade-in">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+                    <div class="mb-10 flex items-center gap-6">
+                        <i data-lucide="quote" class="w-12 h-12 text-cyan-500 opacity-50"></i>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold mb-2 text-cyan-400">代表挨拶</h2>
+                            <p class="text-xl md:text-2xl font-black italic">“ゼロから価値を生み出す起点でありたい”</p>
+                        </div>
+                    </div>
+                    <div class="space-y-6 text-white/80 leading-relaxed text-lg">
+                        <p class="font-bold text-white">ZeroPoint代表の船場拓海です。</p>
+                        <p>室蘭・札幌を拠点に、2名体制でホームページ制作・LP制作を中心としたWeb制作を行っております。</p>
+                        <p>少人数体制だからこそ、一つひとつのご依頼に丁寧に向き合いながらも、スピード感のある対応と柔軟なご提案を強みとしています。</p>
+                        <p>また、デザイン性だけでなく、「集客」や「成果」に繋がる導線設計を重視し、実用的なWeb制作を行っています。</p>
+                        <p>お客様のビジネスに深く寄り添い、目的に応じた最適なWebをご提案いたします。</p>
+                        <p>初めての方でも安心してご相談いただけるよう、丁寧なコミュニケーションを大切にしています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        <section id="contact" class="py-32 bg-zinc-950/80">
+    <div class="max-w-3xl mx-auto px-6">
+        
+        <h2 class="text-3xl md:text-5xl font-black mb-6 text-center">
+            無料相談はこちら
+        </h2>
+        
+        <p class="text-white/50 mb-10 text-center">
+            あなたのLPの改善点を無料で診断します
+        </p>
+
+        <form action="https://formspree.io/f/xnjowdbj" method="POST" class="space-y-6">
+            
+            <input type="text" name="name" placeholder="お名前"
+                class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-400 outline-none">
+
+            <input type="email" name="email" placeholder="メールアドレス"
+                class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-400 outline-none">
+
+            <textarea name="message" rows="5" placeholder="ご相談内容"
+                class="w-full p-4 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-400 outline-none"></textarea>
+
+            <button type="submit"
+                class="w-full bg-cyan-500 text-black font-bold py-4 rounded-xl hover:bg-cyan-400 transition-all">
+                無料で相談する
+            </button>
+
+        </form>
+
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-2xl font-bold tracking-tighter text-cyan-400">ZeroPoint</div>
+            <div class="text-white/40 text-sm">© 2024 ZeroPoint. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Lucide Iconsの初期化
+        lucide.createIcons();
+
+        // ヘッダーのスクロールエフェクト
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-black/80', 'backdrop-blur-md', 'border-white/10', 'h-16');
+                header.classList.remove('border-transparent', 'h-20');
+            } else {
+                header.classList.remove('bg-black/80', 'backdrop-blur-md', 'border-white/10', 'h-16');
+                header.classList.add('border-transparent', 'h-20');
+            }
+        });
+
+        // モバイルメニューの制御
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // スクロールアニメーション (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // 粒子アニメーションのロジック
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const mouse = { x: 0, y: 0, radius: 180 };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 1.2;
+                this.vy = (Math.random() - 0.5) * 1.2;
+                this.size = Math.random() * 2 + 1;
+                this.density = (Math.random() * 20) + 5;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(6, 182, 212, 0.6)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < mouse.radius) {
+                    let force = (mouse.radius - distance) / mouse.radius;
+                    let directionX = (dx / distance) * force * this.density;
+                    let directionY = (dy / distance) * force * this.density;
+                    
+                    this.x -= directionX;
+                    this.y -= directionY;
+                }
+            }
+        }
+
+        function init() {
+            particles = [];
+            const numberOfParticles = Math.min((canvas.width * canvas.height) / 10000, 150);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+            }
+        }
+
+        function connect() {
+            const maxDistance = 180;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let dx = particles[a].x - particles[b].x;
+                    let dy = particles[a].y - particles[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = 1 - (distance / maxDistance);
+                        ctx.strokeStyle = `rgba(6, 182, 212, ${opacity * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.draw();
+                p.update();
+            });
+            connect();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('resize', () => {
+            resize();
+            init();
+        });
+
+        resize();
+        init();
+        animate();
+    </script>
+</body>
+</html>

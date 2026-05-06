@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethereal Mode | Silence Creates Style.</title>
+    <style>
+      /* 
+        Ethereal Mode - Luxury Fashion LP
+        Design: Dark Luxury / Minimal
+      */
+
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+      :root {
+        --bg-color: #050505;
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.6);
+        --border-subtle: rgba(255, 255, 255, 0.05);
+        --accent-line: rgba(255, 255, 255, 0.03);
+        --transition-smooth: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Custom Cursor */
+      .cursor {
+        width: 20px;
+        height: 20px;
+        border: 1px solid white;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 10000;
+        mix-blend-mode: difference;
+        transition: transform 0.2s ease;
+      }
+
+      /* Typography */
+      h1, h2, h3 {
+        font-family: 'Space Grotesk', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+      }
+
+      .italic {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        text-transform: none;
+      }
+
+      /* Base Layout Objects */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 60px;
+      }
+
+      .accent-line-h {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--accent-line);
+        z-index: 1;
+      }
+
+      /* Navigation */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 40px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        mix-blend-mode: difference;
+      }
+
+      .logo {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      nav li {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 300;
+        opacity: 0.7;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+
+      nav li:hover { opacity: 1; }
+
+      /* Sections */
+      section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        padding: 0 60px;
+        gap: 40px;
+      }
+
+      .hero-content {
+        flex: 1.2;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-text {
+        font-size: clamp(60px, 10vw, 120px);
+        line-height: 0.9;
+        font-weight: 300;
+        margin-bottom: 40px;
+      }
+
+      .hero-subtext {
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.8;
+        max-width: 320px;
+        opacity: 0.6;
+      }
+
+      .visual-pane {
+        flex: 0.8;
+        height: 80vh;
+        background: #111;
+        position: relative;
+        border: 1px solid var(--border-subtle);
+        overflow: hidden;
+      }
+
+      .visual-pane img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.7);
+      }
+
+      .visual-label {
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        opacity: 0.4;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        position: absolute;
+        right: 20px;
+        top: 40px;
+      }
+
+      /* Concept Section */
+      .concept {
+        padding: 200px 0;
+      }
+
+      .concept-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        align-items: center;
+      }
+
+      .concept-image {
+        aspect-ratio: 4/5;
+        background: #111;
+        overflow: hidden;
+      }
+
+      .concept-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .concept h2 {
+        font-size: 60px;
+        line-height: 1.1;
+        margin-bottom: 40px;
+      }
+
+      /* Collection Section */
+      .collection {
+        padding: 100px 0;
+        background: #0a0a0a;
+      }
+
+      .collection-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 80px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .product-card {
+        aspect-ratio: 3/4;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--border-subtle);
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: var(--transition-smooth);
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        background: rgba(255,255,255,0.06);
+        border-color: rgba(255,255,255,0.2);
+        transform: translateY(-10px);
+      }
+
+      .product-card span {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        display: block;
+      }
+
+      .product-name { opacity: 0.8; margin-bottom: 5px; }
+      .product-price { opacity: 0.4; }
+
+      /* Lookbook */
+      .lookbook {
+        padding: 150px 0;
+      }
+
+      .lookbook-item {
+        display: flex;
+        gap: 100px;
+        margin-bottom: 200px;
+        align-items: center;
+      }
+
+      .lookbook-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .look-img {
+        flex: 1;
+        aspect-ratio: 4/5;
+        background: #111;
+        overflow: hidden;
+      }
+
+      .look-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .look-content {
+        flex: 0.6;
+      }
+
+      /* CTA */
+      .cta {
+        height: 80vh;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .cta-circle {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        margin-top: 60px;
+      }
+
+      .cta-circle:hover {
+        background: white;
+        color: black;
+        transform: scale(1.1);
+      }
+
+      /* Footer */
+      footer {
+        padding: 100px 60px 60px;
+        border-top: 1px solid var(--border-subtle);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .footer-nav {
+        display: flex;
+        gap: 100px;
+      }
+
+      .f-column h4 {
+        font-size: 10px;
+        opacity: 0.4;
+        letter-spacing: 0.3em;
+        margin-bottom: 30px;
+      }
+
+      .f-column ul {
+        list-style: none;
+      }
+
+      .f-column li {
+        font-size: 12px;
+        opacity: 0.6;
+        margin-bottom: 12px;
+        cursor: pointer;
+      }
+
+      /* Scroll Hint */
+      .scroll-hint {
+        position: absolute;
+        bottom: 60px;
+        right: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .scroll-line {
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(to bottom, #fff, transparent);
+        opacity: 0.3;
+      }
+
+      @media (max-width: 900px) {
+        .container { padding: 0 30px; }
+        header { padding: 30px; }
+        .hero { flex-direction: column; padding-top: 120px; }
+        .hero-text { font-size: 50px; }
+        .visual-pane { width: 100%; height: 50vh; }
+        .concept-grid, .lookbook-item { grid-template-columns: 1fr; flex-direction: column; gap: 40px; }
+        .products-grid { grid-template-columns: 1fr 1fr; }
+        .footer-nav { flex-direction: column; gap: 40px; }
+      }
+    </style>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <header>
+      <div class="logo">Silence</div>
+      <nav>
+        <ul>
+          <li>Collections</li>
+          <li>Archive</li>
+          <li>About</li>
+          <li>Store</li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero container">
+        <div class="accent-line-h"></div>
+        <div class="hero-content">
+          <h1 class="hero-text">
+            Silence<br>
+            Creates<br>
+            <span class="italic">Style.</span>
+          </h1>
+          <p class="hero-subtext">
+            Minimal fashion for modern lifestyles. We design clothing that speaks quietly through form and texture.
+          </p>
+        </div>
+        <div class="visual-pane">
+          <div class="visual-label">Lookbook FW24</div>
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=2574&auto=format&fit=crop" alt="FW24">
+        </div>
+        <div class="scroll-hint">
+          <span style="font-size: 9px; letter-spacing: 0.2em; opacity: 0.4;">EXPLORE</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- Concept -->
+      <section class="concept container">
+        <div class="concept-grid">
+          <div class="concept-image">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2640&auto=format&fit=crop" alt="Concept">
+          </div>
+          <div class="concept-content">
+            <span style="font-size: 10px; letter-spacing: 0.5em; opacity: 0.4; margin-bottom: 20px; display: block;">OUR VISION</span>
+            <h2>We design<br>clothing that<br><span class="italic">speaks quietly.</span></h2>
+            <p style="opacity: 0.5; max-width: 400px; font-weight: 300;">Ethereal Mode is a rejection of the noise. We believe that true sophistication lies in the balance between presence and absence.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Collection -->
+      <section class="collection">
+        <div class="container">
+          <div class="collection-header">
+            <div>
+              <span style="font-size: 10px; letter-spacing: 0.5em; opacity: 0.3;">2024</span>
+              <h3>Core Collection</h3>
+            </div>
+            <div style="font-size: 11px; opacity: 0.5; letter-spacing: 0.2em;">VIEW ALL —&gt;</div>
+          </div>
+
+          <div class="products-grid">
+            <div class="product-card">
+              <span class="product-name">Oversized Jacket</span>
+              <span class="product-price">$890</span>
+            </div>
+            <div class="product-card">
+              <span class="product-name">Minimal Hoodie</span>
+              <span class="product-price">$450</span>
+            </div>
+            <div class="product-card">
+              <span class="product-name">Wide Pants</span>
+              <span class="product-price">$520</span>
+            </div>
+            <div class="product-card">
+              <span class="product-name">Urban Coat</span>
+              <span class="product-price">$1,200</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lookbook -->
+      <section class="lookbook container">
+        <div class="lookbook-item">
+          <div class="look-img">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2670&auto=format&fit=crop" alt="Look 1">
+          </div>
+          <div class="look-content">
+            <h3 class="italic" style="font-size: 40px; margin-bottom: 20px;">Structure</h3>
+            <p style="opacity: 0.6; font-weight: 300;">Exploring architectural forms through fabric. Silence in every stitch.</p>
+          </div>
+        </div>
+        <div class="lookbook-item">
+          <div class="look-img">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2576&auto=format&fit=crop" alt="Look 2">
+          </div>
+          <div class="look-content">
+            <h3 class="italic" style="font-size: 40px; margin-bottom: 20px;">Essence</h3>
+            <p style="opacity: 0.6; font-weight: 300;">The weight of pure silk and raw wool. A dialogue between skin and cloth.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta container">
+        <h2 style="font-size: clamp(40px, 8vw, 100px); text-align: center;">Elevate your presence.</h2>
+        <div class="cta-circle">
+          Explore
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <div class="logo" style="margin-bottom: 40px;">Silence</div>
+        <p style="opacity: 0.3; font-size: 11px; letter-spacing: 0.1em;">© 2024 ETHEREAL MODE. ALL RIGHTS RESERVED.</p>
+      </div>
+      <div class="footer-nav">
+        <div class="f-column">
+          <h4>Navigation</h4>
+          <ul>
+            <li>Collection</li>
+            <li>Archive</li>
+            <li>Journal</li>
+            <li>About</li>
+          </ul>
+        </div>
+        <div class="f-column">
+          <h4>Social</h4>
+          <ul>
+            <li>Instagram</li>
+            <li>Twitter</li>
+            <li>Facebook</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // GSAP Initialization
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Custom Cursor
+      const cursor = document.querySelector('.cursor');
+      document.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+
+      // Reveal Animations
+      const revealElements = (selector, y = 50, delay = 0) => {
+        gsap.from(selector, {
+          y: y,
+          opacity: 0,
+          duration: 1.5,
+          ease: "expo.out",
+          delay: delay,
+          scrollTrigger: {
+            trigger: selector,
+            start: "top 85%",
+          }
+        });
+      };
+
+      // Header Animation
+      gsap.from("header", {
+        y: -50,
+        opacity: 0,
+        duration: 2,
+        ease: "expo.out"
+      });
+
+      // Hero Elements
+      gsap.from(".hero-text", {
+        y: 100,
+        opacity: 0,
+        duration: 2,
+        ease: "expo.out",
+        delay: 0.5
+      });
+
+      gsap.from(".visual-pane", {
+        scale: 1.1,
+        opacity: 0,
+        duration: 2.5,
+        ease: "expo.out",
+        delay: 0.8
+      });
+
+      // Concept Reveal
+      revealElements(".concept-image", 100);
+      revealElements(".concept-content h2", 50, 0.3);
+
+      // Products Reveal
+      gsap.from(".product-card", {
+        y: 60,
+        opacity: 0,
+        duration: 1.5,
+        stagger: 0.2,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: ".products-grid",
+          start: "top 80%",
+        }
+      });
+
+      // Lookbook Items Parallax
+      document.querySelectorAll('.lookbook-item').forEach((item) => {
+        const img = item.querySelector('img');
+        gsap.from(img, {
+          scale: 1.2,
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+        
+        revealElements(item, 80);
+      });
+
+      // CTA Animation
+      gsap.from(".cta h2", {
+        scale: 0.9,
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".cta",
+          start: "top 70%",
+          end: "bottom bottom",
+          scrub: 1
+        }
+      });
+
+      // Lucide Icons (if used any in future)
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
